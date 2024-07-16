@@ -1,0 +1,102 @@
+.main-container {
+    margin:0;
+    top: 25%;
+    left: 50%;
+    /* padding: 70px 70px; */
+    /* margin-left:auto; */
+    /* background-color: red; */
+    border-radius: 25px;
+    /* width: 100%; */
+    position: absolute;
+    margin: -210px 0 0 -450px; 
+}
+
+.header {
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .add-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    margin-right: 15px;
+    display: block;
+    margin-left: auto;
+  }
+  
+  .add-button:hover {
+    background-color: #45a049;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .table-head {
+    background-color: #f2f2f2;
+  }
+  
+  .table-row {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table-header {
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  .table-cell {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .table-motto-cell {
+    padding: 15px;
+    text-align: center;
+    word-break: break-word;
+    white-space: normal;
+    max-width: 300px;
+  }
+  
+  .action-button {
+    background-color: #008CBA;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  .action-button:hover {
+    background-color: #007B9A;
+  }
+  
+  .action-button.delete {
+    background-color: #f44336;
+  }
+  
+  .action-button.delete:hover {
+    background-color: #d32f2f;
+  }
+  
+  .image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  

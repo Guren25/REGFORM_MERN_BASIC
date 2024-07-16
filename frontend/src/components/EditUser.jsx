@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AddUser.css';
 
-const AddUser = ({ updateUsers}) => {
+const EditUserForm = ({ userId, closeModal, updateUsers }) => {
   const [name, setName] = useState('');
   const [motto, setMotto] = useState('');
   const [image, setImage] = useState(null);
   const [imgPreview, setImgPreview] = useState('');
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/records/${userId}`);
+        setName(res.data.name);
+        setMotto(res.data.motto);
+        setImage(res.data.image);
+        setImgPreview(`http://localhost:5000${res.data.image}`);
+      } catch (err) {
+        console.error('Error fetching user:', err);
+      }
+    };
+
+    fetchUser();
+  }, [userId]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -19,24 +35,28 @@ const AddUser = ({ updateUsers}) => {
     const formData = new FormData();
     formData.append('name', name);
     formData.append('motto', motto);
-    formData.append('image', image);
+    if (image && typeof image !== 'string') {
+      formData.append('image', image);
+    }
 
     try {
-      const res = await axios.post('http://localhost:5000/Records', formData, {
+      const res = await axios.put(`http://localhost:5000/records/${userId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('User added successfully:', res.data);
+      console.log('User updated successfully:', res.data);
+      closeModal();
+      updateUsers();
     } catch (err) {
-      console.error('Error adding user:', err);
+      console.error('Error updating user:', err);
     }
   };
 
   return (
     <div className='modal-container'>
-      <h2>Add User Information</h2>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
+      <h2>Edit User Information</h2>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div style={{ 
           width: '200px', 
           height: '200px', 
@@ -46,16 +66,16 @@ const AddUser = ({ updateUsers}) => {
           marginTop: '2px', 
           marginBottom: '5px',
           border: '1px solid black'
-      }}>
-      {imgPreview ? (
-        <img src={imgPreview} alt="Preview" 
-          style={{ 
-          maxHeight: '100%', 
-          maxWidth: '100%'
-      }} 
-      />
-      ) : (
-          <span>No Image</span>
+        }}>
+          {imgPreview ? (
+            <img src={imgPreview} alt="Preview" 
+              style={{ 
+                maxHeight: '100%', 
+                maxWidth: '100%'
+              }} 
+            />
+          ) : (
+            <span>No Image</span>
           )}
         </div>
       </div>
@@ -70,14 +90,14 @@ const AddUser = ({ updateUsers}) => {
         </div>
         <div className='img-only'>
           <label>Image:</label>
-          <input type="file" onChange={handleImageChange} required />
+          <input type="file" onChange={handleImageChange} />
         </div>
         <div className='buttons-only'>
-          <button type="submit">Add User</button>
+          <button type="submit">Save Changes</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default AddUser;
+export default EditUserForm;
