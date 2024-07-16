@@ -52,7 +52,20 @@ const EditUserForm = ({ userId, closeModal, updateUsers }) => {
       console.error('Error updating user:', err);
     }
   };
-
+  const renderImage = () => (
+    imgPreview ? (
+   <img
+        src={imgPreview}
+        alt="Preview"
+        style={{
+        maxHeight: '100%',
+        maxWidth: '100%',
+        }}
+    />
+    ) : (
+        <span>No Image</span>
+     )
+  );
   return (
     <div className='modal-container'>
       <h2>Edit User Information</h2>
@@ -67,16 +80,7 @@ const EditUserForm = ({ userId, closeModal, updateUsers }) => {
           marginBottom: '5px',
           border: '1px solid black'
         }}>
-          {imgPreview ? (
-            <img src={imgPreview} alt="Preview" 
-              style={{ 
-                maxHeight: '100%', 
-                maxWidth: '100%'
-              }} 
-            />
-          ) : (
-            <span>No Image</span>
-          )}
+        {renderImage()}
         </div>
       </div>
       <form onSubmit={handleSubmit}>

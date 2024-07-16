@@ -1,69 +1,47 @@
 .modal-container {
-    width: 98%;
-    height: 100%;
-    border-radius: 15px;
-    background-color: white;
-    border-color: black;
-    box-shadow: 0 5px 15px rgba(0,0,0,.3);
-}
-.modal-container h2 {
-    text-align: center;
-    font-size: 30px;
-}
-.modal-container .name-only label, .motto-only label{
-    display:flex;
-    font-size: 20px;
-    margin-left: 42px;
-    margin-top: 10px;
-}
-
-.modal-container .name-only input {
-    width: 300px;
-    margin-left: 10%;
-    font-size: 18px;
+    padding: 5%; /* Reduced padding */
+    background-color: #f8f9fa;
     border-radius: 5px;
-    margin-top: 2px;
-    margin-bottom: 5px;
-    border: 2px solid black;
-}
-.modal-container .motto-only textarea{
-    font-size: 18px;
-    height: 120px;
-    width: 300px;
-    text-wrap: pretty;
-    margin-top: 2px;
-    margin-left: 10%;
-    border-radius: 5px;
-    resize: none;
-    border: 2px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+    max-width: 400px; /* Set a max-width to make it smaller */
+    margin: auto; /* Center the modal */
 }
 
-.modal-container .img-only label {
-    margin-top: 2px;
-    display:flex;
-    font-size: 20px;
-    margin-left: 42px;
-}
-
-.modal-container input {
-    margin-top: 5px;
-    margin-left: 35px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-.modal-container .buttons-only {
+.preview-container {
+    margin-bottom: 20px;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    align-items: center;
+    border: 5px solid black;
 }
 
-.modal-container button {
-    width: 80%;
-    background-color: #12a00e;
-    color: white;
-    border: none;
+.preview-container img {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-.modal-container button:hover{
-    background-color: #0e720b;
+
+.name-only, .motto-only, .img-only {
+    margin-bottom: 20px;
+    width: auto;
+}
+
+.buttons-only {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: blue;
+    color: white;
 }
