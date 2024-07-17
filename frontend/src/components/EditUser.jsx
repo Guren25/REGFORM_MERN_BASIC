@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AddUser.css';
 
-const EditUserForm = ({ userId, closeModal, updateUsers }) => {
+const EditUser = ({ userId, closeModal, updateUsers }) => {
   const [name, setName] = useState('');
   const [motto, setMotto] = useState('');
   const [image, setImage] = useState(null);
@@ -52,20 +52,7 @@ const EditUserForm = ({ userId, closeModal, updateUsers }) => {
       console.error('Error updating user:', err);
     }
   };
-  const renderImage = () => (
-    imgPreview ? (
-   <img
-        src={imgPreview}
-        alt="Preview"
-        style={{
-        maxHeight: '100%',
-        maxWidth: '100%',
-        }}
-    />
-    ) : (
-        <span>No Image</span>
-     )
-  );
+
   return (
     <div className='modal-container'>
       <h2>Edit User Information</h2>
@@ -80,7 +67,16 @@ const EditUserForm = ({ userId, closeModal, updateUsers }) => {
           marginBottom: '5px',
           border: '1px solid black'
         }}>
-        {renderImage()}
+          {imgPreview ? (
+            <img src={imgPreview} alt="Preview" 
+              style={{ 
+                maxHeight: '100%', 
+                maxWidth: '100%'
+              }} 
+            />
+          ) : (
+            <span>No Image</span>
+          )}
         </div>
       </div>
       <form onSubmit={handleSubmit}>
@@ -104,4 +100,4 @@ const EditUserForm = ({ userId, closeModal, updateUsers }) => {
   );
 };
 
-export default EditUserForm;
+export default EditUser;
